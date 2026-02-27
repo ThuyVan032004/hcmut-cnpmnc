@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Chinh Sua Sinh Vien' : 'Them Moi Sinh Vien'"></title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-weight: bold; margin-bottom: 4px; }
+        input[type=text], input[type=email], input[type=number] {
+            width: 320px; padding: 8px; border: 1px solid #ccc;
+            border-radius: 4px; font-size: 14px; }
+        input:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed; }
+        .btn { padding: 8px 16px; text-decoration: none; border-radius: 4px;
+               border: none; cursor: pointer; font-size: 14px; margin-right: 8px; }
+        .btn-primary   { background: #007bff; color: #fff; }
+        .btn-secondary { background: #6c757d; color: #fff; }
+        .hint { font-size: 12px; color: #6c757d; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <h1 th:text="${isEdit} ? 'Chinh Sua Sinh Vien' : 'Them Moi Sinh Vien'"></h1>
+
+    <form th:action="${isEdit} ? @{/students/{id}/edit(id=${student.id})} : @{/students/new}"
+          th:object="${student}"
+          method="POST">
+
+        <!-- ID: chỉ cho nhập khi thêm mới, hiển thị readonly khi chỉnh sửa -->
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text"
+                   id="id"
+                   th:field="*{id}"
+                   placeholder="Nhap ma sinh vien..."
+                   th:disabled="${isEdit}"
+                   required />
+            <p class="hint" th:if="${!isEdit}">ID khong the thay doi sau khi tao.</p>
+            <p class="hint" th:if="${isEdit}">ID khong the chinh sua.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Ho va Ten</label>
+            <input type="text"
+                   id="name"
+                   th:field="*{name}"
+                   placeholder="Nhap ho va ten..."
+                   required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                   id="email"
+                   th:field="*{email}"
+                   placeholder="Nhap email..."
+                   required />
+        </div>
+
+        <div class="form-group">
+            <label for="age">Tuoi</label>
+            <input type="number"
+                   id="age"
+                   th:field="*{age}"
+                   placeholder="Nhap tuoi..."
+                   min="1" max="150"
+                   required />
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Luu</button>
+            <a href="/students" class="btn btn-secondary">Huy</a>
+        </div>
+    </form>
+</body>
+</html>

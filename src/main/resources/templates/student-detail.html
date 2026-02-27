@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiet Sinh Vien</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .card { max-width: 480px; border: 1px solid #ddd;
+                border-radius: 8px; padding: 24px; margin-top: 20px; }
+        .field { margin-bottom: 12px; }
+        .label { font-weight: bold; display: inline-block; width: 80px; }
+        .btn { padding: 8px 16px; text-decoration: none; border-radius: 4px;
+               border: none; cursor: pointer; font-size: 14px; margin-right: 8px; }
+        .btn-warning { background: #ffc107; color: #212529; }
+        .btn-danger  { background: #dc3545; color: #fff; }
+        .btn-secondary { background: #6c757d; color: #fff; }
+        .actions { margin-top: 20px; display: flex; align-items: center; }
+    </style>
+</head>
+<body>
+    <h1>Chi Tiet Sinh Vien</h1>
+
+    <div class="card">
+        <div class="field">
+            <span class="label">ID:</span>
+            <span th:text="${student.id}"></span>
+        </div>
+        <div class="field">
+            <span class="label">Ho Ten:</span>
+            <span th:text="${student.name}"></span>
+        </div>
+        <div class="field">
+            <span class="label">Email:</span>
+            <span th:text="${student.email}"></span>
+        </div>
+        <div class="field">
+            <span class="label">Tuoi:</span>
+            <span th:text="${student.age}"></span>
+        </div>
+
+        <div class="actions">
+            <!-- Nút Chỉnh Sửa -->
+            <a th:href="@{/students/{id}/edit(id=${student.id})}"
+               class="btn btn-warning">Chinh Sua</a>
+
+            <!-- Nút Xóa với Confirm Dialog -->
+            <form th:action="@{/students/{id}/delete(id=${student.id})}"
+                  method="POST"
+                  onsubmit="return confirm('Ban co chac chan muon xoa sinh vien nay khong?');">
+                <button type="submit" class="btn btn-danger">Xoa</button>
+            </form>
+
+            <!-- Quay lại danh sách -->
+            <a href="/students" class="btn btn-secondary" style="margin-left:8px;">Quay Lai</a>
+        </div>
+    </div>
+</body>
+</html>
