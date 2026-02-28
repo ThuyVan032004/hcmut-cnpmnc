@@ -80,7 +80,7 @@ SQL query:
     (12, 'Truong Thi M', 'thim@example.com', 20);
 ```
 
-![Kết quả]()
+![Kết quả](src/main/resources/static/lab-1.png)
 
 #### 2. 
     • Cố tình Insert một sinh viên có id trùng với một người đã có sẵn.
