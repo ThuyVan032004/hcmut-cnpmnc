@@ -22,7 +22,6 @@
     <h1>Danh Sach Sinh Vien</h1>
 
     <div class="top-bar">
-        <!-- Tìm kiếm -->
         <form action="/students" method="GET" class="search-bar">
             <input type="text" name="keyword" placeholder="Nhap ten..."
                    th:value="${keyword}" />
@@ -31,7 +30,6 @@
                href="/students" class="btn btn-secondary">Xoa bo loc</a>
         </form>
 
-        <!-- Nút Thêm Mới -->
         <a href="/students/new" class="btn btn-primary">+ Them Moi</a>
     </div>
 

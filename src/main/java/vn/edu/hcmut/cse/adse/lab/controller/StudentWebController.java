@@ -16,7 +16,6 @@ public class StudentWebController {
     @Autowired
     private StudentService service;
 
-    // ------------------------------------------------------------------ LIST
     @GetMapping
     public String getAllStudents(
             @RequestParam(required = false) String keyword,
@@ -31,7 +30,6 @@ public class StudentWebController {
         return "students";
     }
 
-    // ----------------------------------------------------------------- DETAIL
     @GetMapping("/{id}")
     public String getStudentDetail(@PathVariable String id, Model model) {
         Student student = service.getById(id);
@@ -40,7 +38,6 @@ public class StudentWebController {
         return "student-detail";
     }
 
-    // ----------------------------------------------------------------- CREATE
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("student", new Student());
@@ -54,7 +51,6 @@ public class StudentWebController {
         return "redirect:/students";
     }
 
-    // ------------------------------------------------------------------ EDIT
     @GetMapping("/{id}/edit")
     public String showEditForm(@PathVariable String id, Model model) {
         Student student = service.getById(id);
@@ -64,16 +60,14 @@ public class StudentWebController {
         return "student-form";
     }
 
-    /** ID bị disabled trên form nên không submit → set lại từ PathVariable */
     @PostMapping("/{id}/edit")
     public String updateStudent(@PathVariable String id,
                                 @ModelAttribute Student student) {
-        student.setId(id); // đảm bảo giữ ID gốc
+        student.setId(id);
         service.update(id, student);
         return "redirect:/students";
     }
 
-    // ----------------------------------------------------------------- DELETE
     @PostMapping("/{id}/delete")
     public String deleteStudent(@PathVariable String id) {
         service.delete(id);
