@@ -8,7 +8,6 @@ public class StudentManagementApplication {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(StudentManagementApplication.class);
-        app.addInitializers(new DotenvConfig());
         app.run(args);
     }
 }
