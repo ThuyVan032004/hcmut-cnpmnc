@@ -14,6 +14,7 @@ public class DotenvConfig implements ApplicationContextInitializer<ConfigurableA
     public void initialize(ConfigurableApplicationContext applicationContext) {
         Dotenv dotenv = Dotenv.configure()
                 .ignoreIfMissing()
+                .systemProperties()
                 .load();
 
         Map<String, Object> envVars = new HashMap<>();
